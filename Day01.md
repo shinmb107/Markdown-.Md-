@@ -34,7 +34,7 @@
 ### 반복을 이용한 입/출력
     int num1, num2, result;
     
-    std::cout << "숫자입력";
+    std::cout << "숫자입력 : ";
     std::cin >> num1 >> num2;
     
     for (int i = num1; i < num2; i++) {
@@ -77,4 +77,39 @@
     MyFunc(20, 30);                   // 숫자 두 개(b, a) (5번 MyFunc)
 
 ### 매개변수의 디폴트 값
-###### 
+###### 함수 생성 시 매개변수의 기본값 미리 지정
+    int MyFunc(int num1 = 10, int num2 = 20) {
+        return num1 + num2;
+    }
+	int main() {
+        MyFunc();		// num1 = 10, num2 = 20
+		MyFunc(10, 20);	// num1 = 10, num2 = 20
+    }
+
+	/* 위 코드와 아래 코드는 함수 위치와 선언만 다를뿐 똑같은 코드 */
+	/* 모든 코드는 위쪽부터 아래로 내려오기 때문에 위코드는 별도의 선언이 필요 없음 */
+	/* 아래 코드는 함수가 아래쪽에 위치하여 main 위에 선언하지 않으면 컴파일 오류 */
+
+    int MyFunc(int num1 = 10, int num2 = 20);
+	
+	int main() {
+        MyFunc();		// num1 = 10, num2 = 20
+		MyFunc(10, 20);	// num1 = 10, num2 = 20
+		cout << MyFunc() << endl;
+    }
+    int MyFunc(int num1, int num2) {
+        return num1 + num2;
+    }
+
+    /* 1순위 출력 부분 함수 값,  2순위 main 안에 가장 마지막 함수 값, 3순위 저장한 함수의 리턴 결과 값 */
+
+	int MyFunc(int num1 = 10, int num2 = 20);
+	
+	int main() {
+        MyFunc();		// num1 = 10, num2 = 20
+		cout << MyFunc(30, 40) << endl;		// num1 = 10, num2 = 20
+    }
+    int MyFunc(int num1, int num2) {
+        return num1 + num2;
+    }
+	
