@@ -114,5 +114,3 @@
     int MyFunc(int num1, int num2) {
         return num1 + num2;
     }	// 결과 : 70 
-
-###### 함수 생성 시 매개변수의 기본값 미리 지정
