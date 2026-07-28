@@ -35,8 +35,8 @@
     int Func(int num1, int num2) {   // 함수 정의
         return num1 + num2;
     }
-    
-    // 참조자
+#### 참조자 사용
+
     void SwapByReference(int& ref1, int& ref2) { // 변수에다가 주소 값을 넣겠다는 선언
 	     int temp = ref1;   // ref1 값에는 int형 주소 형태, 즉 temp에는 int형 주소가 들어가 있음
 	     ref1 = ref2;       // ref1, ref2 값도 int형 주소 형태
