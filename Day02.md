@@ -66,8 +66,8 @@
 	     ref2 = temp;       // ref2, temp 값도 int형 별명 형태
     }
     int main() {
-        int val1 = 10;   // int형
-        int val2 = 20;   // int형
+        int val1 = 10;      // int형
+        int val2 = 20;      // int형
 
 	     SwapByReference(val1, val2);   // int형을 int&로 사용 ( 즉, int&형 별명 값에 int 값을 넣어 함수로 전달 후 다시 받음
 	     cout << "val1 : " << val1 << ", val2 : " << val2 << endl;
@@ -83,30 +83,35 @@
 
 실행(동작 순서) : main() → 호출된 함수 → main()으로 복귀
 
-num1 : 변수이름()은 &별명() -> num 과 &num은 같은 의미
-ex) 이름 : 홍길동(num1), 별명 : 도적(&num) -> 홍길동과 홍길동의 별명은 같은 대상을 가르키기에 뭐라 부르던 같은 한사람!
+num1 : 변수 이름(), 별명 : &을 선언한 변수 이름() -> num1 과 &을 선언한 ref 같은 의미 (& = 주소 / 홍길동의 집 주소)
+ex) 이름 : 홍길동(num1), 별명 : 도적(ref) -> 홍길동과 홍길동의 별명은 같은 대상을 가르키기에 뭐라 부르던 같은 한 사람!
 
 
-    int& RefRetFuncOne(int& ref) {			// 2. int형 '&' 별명 선언 및 ref의 별명 복사 ((num1 = 1) == (&num1 = 1) == (ref = 1))
-	    ref++;								// 3. ref 1증가 ((&num1 = 2) == (ref = 2))
-	    return ref;							// 4. 1 증가한 ref+1 전달 ((&num1 = 2) == (ref = 2))
+    int& RefRetFuncOne(int& ref) {			// 2. int형 '&' 별명 선언 및 ref의 별명 복사 ((num1 = 1) -> (&num1 = 1) -> (ref = 1))
+	    ref++;								// 3. ref 1증가 ((num1 = 2) -> (ref = 2))
+	    return ref;							// 4. 1 증가한 ref+1을 int& 형태로 반환 ((num1 = 2) == (ref = 2) -> (&num1 = 2))
     }
 
-    int main() {
+    int main() {							// 0. main() 시작
 	    int num1 = 1;
-	    int& num2 = RefRetFuncOne(num1);	// 1. 코드 실행 시 main 안에 있는 RefRetFuncOne(num1)이 바로 실행
-										// 5. 함수 종료 후 전달 받은 ref 값 실행 (&num1 = 2), ((num2 = 2) = (ref = 2))
+	    int& num2 = RefRetFuncOne(num1);	// 1. 코드 실행 시 main 안에 있는 RefRetFuncOne(num1)이 바로 실행 **num2 변수를 함수의 값으로 하기 위해 참조자 사용**
+										    // 5. 함수 종료 후 전달 받은 ref 값 실행 (&num1 = 2), ((num2 = 2) = (ref = 2))
 
 	    cout << "num1 : " << num1 << endl;	// 6. 위에서 아래 순서로 코드를 읽기에 기존의 (int num1 = 1;)에 함수 실행 후 (&num1 = 2)를 덮어 씌움
-										// -> 같은 int형 이므로 int&의 값을 int에 대입
+										    // -> 같은 int형 이므로 int&의 값을 int에 대입
 	    cout << "num2 : " << num2 << endl;	// 7. 함수 실행 후 전달 받은 값 출력 (&num2 = ref = 2)
+											// -> 위쪽에서 &num2 = RefRetFuncOne(num1) 선언
+											// -> 즉, 함수에 num1 값을 보내고 ref 값으로 반환하여 num2에 대입, num2 = ref = num1 3개 모두 동일
 
     	num1 += 1;							// 8. 6.번 결과 (num1 = 2)에 +1을 하여 (num1 = 3)
-    	num2 += 100;						// 9. 7.번 결과 (num2 = 2)에 +1을 하여 (num2 = 3) ->
-										// 근데 위 변수에 (num2 = 3) 값에 +100 (num2 = 103)
+		
+		cout << "num1 : " << num1 << endl;  // 7.번 설명에 따라 num1 = num2 = ref 3개 모두 동일하므로 num1, num2 값 모두 3 (num1 = num2 = ref = 3)
+    	cout << "num2 : " << num2 << endl;	// 7.번 설명에 따라 num1 = num2 = ref 3개 모두 동일하므로 num1, num2 값 모두 3 (num1 = num2 = ref = 3)
+		
+    	num2 += 100;						// 7.번의 설명에 따라 num1 = num2 = ref 3개 모두 동일하므로 num1, num2 값 모두 103
 	
-    	cout << "num1 : " << num1 << endl;  // 
-    	cout << "num2 : " << num2 << endl;	// (num2 = 103)
+    	cout << "num1 : " << num1 << endl;  // (num1 = num2 = ref = 103)
+    	cout << "num2 : " << num2 << endl;	// (num1 = num2 = ref = 103)
 
 	    return 0;
     }
