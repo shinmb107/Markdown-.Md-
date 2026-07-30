@@ -53,7 +53,6 @@
     public:													// 클래스 안에는 "이런 것들이 있다."라고 알려주는 역할 -> 그러므로 public
     	Member(const char*, const char*, const char*);		// 클래스 밖에서 사용할 *생성자* 선언, (객체가 생성될 때 자동으로 호출)
     	void print();										// 일반 멤버 *함수* 선언, (객체를 통해 호출하는 함수)
-		static void MemberCount(int);						// static(정적) 멤버 *함수* 선언 (객체가 아닌 클래스에 속한 함수)
     };
 
 <hr>
