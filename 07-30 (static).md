@@ -34,12 +34,15 @@
         /** 일반 멤버 변수( 객체마다 각각 하나 씩 생성 ) **/
 	    /** Member m1(name, phone, addr); | Member m2(...); | Member m3(...); **/
 	    /** 즉, 'm1'의 'name' 과 'm2'의 'name' 그리고 'm3'의 'name' 은 각각 다름 **/
+		
     	char name[20];      
 		char phone[20]; 	
 		char addr[20];		
 
+
 		/** 객체마다 생성되지 않음! 즉 프로그램 전체에서 딱 하나만 존재! **/
 		/** 즉, 'm1'의 'count' == 'm2'의 'count' == 'm3'의 'count' 모든 객체는 count를 공유! **/
+		
 	    static int count;	
 
 <hr>
@@ -67,10 +70,14 @@
 
 <hr>
 
-    //Member::Member(const char* _name, const char* _phone, const char* _addr) {
-    //	strcpy(this->name, _name);
-    //	strcpy(this->phone, _phone);
-    //	strcpy(this->addr, _addr);
+    /** 위 코드와 기능은 완전히 같음, 차이점은 this 포인터를 명시적으로 사용 했느냐의 안했느냐 차이 **/
+	/** 멤버 변수와 매개변수의 이름이 같을 때 많이 사용
+	/** 위 코드 -> ( 멤버변수 : name / 매개변수 : _name ), 아래 코드 -> ( 멤버변수 : name / 매개변수 : name ) **/
+	
+    //Member::Member(const char* name, const char* phone, const char* addr) {
+    //	strcpy(this->name, name);
+    //	strcpy(this->phone, phone);
+    //	strcpy(this->addr, addr);
     //	count++;
     //}
 
