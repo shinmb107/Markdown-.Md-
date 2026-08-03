@@ -24,7 +24,7 @@
 
 <hr>
 
-    /* virtual */
+    /* virtual 함수 */
     class First {
     public:
     	virtual void MyFunc() {	// 가장 마지막 함수를 출력 -> "Third class" (가상함수)
